@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import FrontContext from './FrontContext';
-import CrudIdea from './ideas/Crud';
+import CreateIdea from './ideas/Create';
+import ListIdeas from './ideas/List';
 import Nav from './Nav';
 
 function Front({show}) {
@@ -45,7 +46,7 @@ function Front({show}) {
                         <div className="container">
                             <div className="row">
                                 <div className="col-6">
-                                    <CrudIdea />
+                                    <CreateIdea />
                                 </div>
                             </div>
                         </div>
@@ -56,7 +57,7 @@ function Front({show}) {
                         <div className="container">
                             <div className="row">
                                 <div className="col-6">
-                                    <h1>LIST</h1>
+                                    <ListIdeas />
                                 </div>
                             </div>
                         </div>
