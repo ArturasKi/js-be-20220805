@@ -15,7 +15,7 @@ function List() {
             <div className="card-body">
                 <ul className="list-group">
                     {
-                    ideas ? ideas.map(idea => <Idea key={idea.id} idea={idea}></Idea>) : null
+                    ideas ? ideas.map(idea => idea.verify === 1 ? <Idea key={idea.id} idea={idea}></Idea> : null) : null
                     }
                 </ul>
             </div>
