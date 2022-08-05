@@ -72,6 +72,30 @@ app.post("/donators", (req, res) => {
   });
 });
 
+//BACK DELETE IDEA
+app.delete("/ideas/:id", (req, res) => {
+  const sql = `
+  DELETE FROM ideas
+  WHERE id = ?
+  `;
+  con.query(sql, [req.params.id], (err, result) => {
+      if (err) throw err;
+      res.send({ result, msg: { text: 'Idėja buvo ištrinta', type: 'danger' } });
+  });
+});
+
+//BACK EDIT IDEA
+app.put("/ideas/:id", (req, res) => {
+  const sql = `
+  UPDATE ideas
+  SET verify = ?
+  WHERE id = ?
+  `;
+  con.query(sql, [req.body.verify, req.params.id], (err, result) => {
+      if (err) throw err;
+      res.send({ result, msg: { text: 'Savivaldybė redaguota', type: 'success' } });
+  });
+});
 
 
 

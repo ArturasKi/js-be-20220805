@@ -9,19 +9,12 @@ function Idea({idea}) {
     const [name, setName] = useState('');
     const [donation, setDonation] = useState('0');
 
-    // const donatedSum = () => donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2)
-
     const handleDonate = () => {
         const data = { name, donation, idea_id: idea.id };
         setCreateDonation(data);
         setName('');
         setDonation('0');
   };
-
-//     const handleDelete = () => {
-//         console.log(idea.id);
-//         console.log(donations);
-//   };
 
     return (
         <li className="list-group-item">
