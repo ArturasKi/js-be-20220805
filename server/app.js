@@ -34,6 +34,18 @@ FROM ideas
   });
 });
 
+// FRONT READ DONATORS
+app.get("/donators", (req, res) => {
+  const sql = `
+SELECT *
+FROM donators
+`;
+  con.query(sql, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+});
+
 //FRONT CREATE IDEA
 app.post("/ideas", (req, res) => {
   const sql = `
@@ -42,6 +54,19 @@ app.post("/ideas", (req, res) => {
   VALUES (?, ?, ?)
   `;
   con.query(sql, [req.body.idea, req.body.photo, req.body.sum], (err, result) => {
+      if (err) throw err;
+      res.send({ result, msg: { text: "Sukurta nauja idėja!", type: "success" } });
+  });
+});
+
+//FRONT CREATE DONATION
+app.post("/donators", (req, res) => {
+  const sql = `
+  INSERT INTO donators
+  (name, donation, idea_id)
+  VALUES (?, ?, ?)
+  `;
+  con.query(sql, [req.body.name, req.body.donation, req.body.idea_id], (err, result) => {
       if (err) throw err;
       res.send({ result, msg: { text: "Sukurta nauja idėja!", type: "success" } });
   });

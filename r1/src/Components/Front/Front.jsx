@@ -10,13 +10,22 @@ function Front({show}) {
     const [lastUpdate, setLastUpdate] = useState(Date.now());
 
     const [ideas, setIdeas] = useState(null);
+    const [donations, setDonations] = useState(null);
     const [createIdea, setCreateIdea] = useState(null);
+    const [createDonation, setCreateDonation] = useState(null);
 
     // READ IDEAS
     useEffect(() => {
         axios
         .get("http://localhost:3003/ideas")
         .then((res) => setIdeas(res.data));
+    }, [lastUpdate]);
+
+    // READ DONATORS
+    useEffect(() => {
+        axios
+        .get("http://localhost:3003/donators")
+        .then((res) => setDonations(res.data));
     }, [lastUpdate]);
 
     // CREATE IDEAS
@@ -33,11 +42,27 @@ function Front({show}) {
           });
       }, [createIdea]);
 
+    // CREATE DONATION
+    useEffect(() => {
+        if (null === createDonation) return;
+        axios
+          .post("http://localhost:3003/donators", createDonation)
+          .then((res) => {
+            // showMessage(res.data.msg);
+            setLastUpdate(Date.now()); // irasymas, update;
+          })
+          .catch((error) => {
+            // showMessage({ text: error.message, type: "success" });
+          });
+      }, [createDonation]);
+
 
     return (
         <FrontContext.Provider value={{
             setCreateIdea,
-            ideas
+            ideas,
+            setCreateDonation,
+            donations
         }}>
             {
                 show === 'front' ? 
@@ -56,7 +81,7 @@ function Front({show}) {
                         <Nav />
                         <div className="container">
                             <div className="row">
-                                <div className="col-6">
+                                <div className="col-12">
                                     <ListIdeas />
                                 </div>
                             </div>

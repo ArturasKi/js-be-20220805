@@ -1,5 +1,5 @@
 body {
-  // background-color: #505764;
+  background-color: #505764;
 }
 
 .list-group-item {
@@ -11,8 +11,9 @@ body {
       width: 100%;
       .content {
           display: flex;
-          align-items: center;
-          justify-content: flex-start;
+          flex-direction: column;
+          align-items: flex-start;
+          // justify-content: space-around;
       }
       .form-group {
           width: 100%;
@@ -165,4 +166,9 @@ nav.nav {
 .total {
   display: flex;
   justify-content: flex-end;
+}
+
+.content > input {
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
