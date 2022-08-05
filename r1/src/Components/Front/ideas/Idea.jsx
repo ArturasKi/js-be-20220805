@@ -8,7 +8,6 @@ function Idea({idea}) {
 
     const [name, setName] = useState('');
     const [donation, setDonation] = useState('0');
-    // const [ideaId, setIdeaId] = useState('');
 
     // const donatedSum = () => donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2)
 
@@ -19,10 +18,10 @@ function Idea({idea}) {
         setDonation('0');
   };
 
-    const handleDelete = () => {
-        console.log(idea.id);
-        console.log(donations);
-  };
+//     const handleDelete = () => {
+//         console.log(idea.id);
+//         console.log(donations);
+//   };
 
     return (
         <li className="list-group-item">
@@ -38,7 +37,7 @@ function Idea({idea}) {
                     } EUR</b>
                     </p>
                     <p>Likusi iki tikslo suma: <b>{(idea.sum - donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0)).toFixed(2)} EUR</b></p>
-                    <p>Lėšų surinkimo istorija: ... EUR</p>
+                    <p>Lėšų surinkimo istorija: </p>
                     <label>Aukotojo vardas</label>
                     <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)}></input>
                     <label>Aukojama suma</label>
@@ -46,7 +45,7 @@ function Idea({idea}) {
                 </div>
                 <div className="buttons">
                     <button type="button" className="btn btn-outline-success ml-2" onClick={handleDonate}>Paaukoti</button>
-                    <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Delete</button>
+                    {/* <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Delete</button> */}
                 </div>
             </div>
         </li>
