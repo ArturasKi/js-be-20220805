@@ -3,6 +3,7 @@ import axios from 'axios';
 import BackContext from './BackContext';
 import Nav from './Nav';
 import ListIdeas from './List';
+import { authConfig } from '../../Functions/auth';
 
 function Back({show}) {
 
@@ -17,14 +18,14 @@ function Back({show}) {
     // READ IDEAS
     useEffect(() => {
         axios
-        .get("http://localhost:3003/ideas")
+        .get("http://localhost:3003/ideas", authConfig())
         .then((res) => setIdeas(res.data));
     }, [lastUpdate]);
 
     // READ DONATORS
     useEffect(() => {
         axios
-        .get("http://localhost:3003/donators")
+        .get("http://localhost:3003/donators", authConfig())
         .then((res) => setDonations(res.data));
     }, [lastUpdate]);
 
@@ -32,7 +33,7 @@ function Back({show}) {
     useEffect(() => {
     if (null === deleteIdea) return;
     axios
-      .delete("http://localhost:3003/ideas/" + deleteIdea.id)
+      .delete("http://localhost:3003/ideas/" + deleteIdea.id, authConfig())
       .then((res) => {
         // showMessage(res.data.msg);
         setLastUpdate(Date.now()); // irasymas, update;
@@ -46,7 +47,7 @@ function Back({show}) {
   useEffect(() => {
     if (null === editIdea) return;
     axios
-      .put("http://localhost:3003/ideas/" + editIdea.id, editIdea)
+      .put("http://localhost:3003/ideas/" + editIdea.id, editIdea, authConfig())
       .then((res) => {
         // showMessage(res.data.msg);
         setLastUpdate(Date.now()); // irasymas, update;

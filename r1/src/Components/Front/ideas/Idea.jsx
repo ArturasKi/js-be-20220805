@@ -16,6 +16,8 @@ function Idea({idea}) {
         setDonation('0');
   };
 
+  let surinktaSuma = donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2);
+
     return (
         <li className="list-group-item">
             <div className="item-front">
@@ -26,18 +28,20 @@ function Idea({idea}) {
                     }
                     <p>Norima surinkti suma: <b>{idea.sum.toFixed(2)} EUR</b></p>
                     <p>Jau surinkta suma: <b>{
-                    donations && ideas ? donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2) : null
+                    donations && ideas ? surinktaSuma : null
                     } EUR</b>
+                    <p style={idea.sum <= surinktaSuma ? {display: 'block', color: 'green', fontWeight: 'bold'} : {display: 'none'}}>Suma surinkta!</p>
                     </p>
-                    <p>Likusi iki tikslo suma: <b>{donations && ideas ? (idea.sum - donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0)).toFixed(2) : null} EUR</b></p>
-                    <label>Aukotojo vardas</label>
-                    <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)}></input>
-                    <label>Aukojama suma</label>
-                    <input type="number" className="form-control" value={donation} onChange={(e) => setDonation(e.target.value)}></input>
+                    <p style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}}>Likusi iki tikslo suma: <b>{donations && ideas ? (idea.sum - donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0)).toFixed(2) : null} EUR</b></p>
+                    <div style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}}>
+                        <label>Aukotojo vardas</label>
+                        <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)}></input>
+                        <label>Aukojama suma</label>
+                        <input type="number" className="form-control" value={donation} onChange={(e) => setDonation(e.target.value)}></input>
+                    </div>
                 </div>
-                <div className="buttons">
+                <div style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}} className="buttons">
                     <button type="button" className="btn btn-outline-success ml-2" onClick={handleDonate}>Paaukoti</button>
-                    {/* <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Delete</button> */}
                 </div>
                 <div className="form-group">
                     <h5>Lėšų surinkimo istorija: </h5>
@@ -53,3 +57,5 @@ function Idea({idea}) {
 }
 
 export default Idea;
+
+// donations && ideas ? donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2) : null

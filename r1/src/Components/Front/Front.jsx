@@ -4,6 +4,7 @@ import FrontContext from './FrontContext';
 import CreateIdea from './ideas/Create';
 import ListIdeas from './ideas/List';
 import Nav from './Nav';
+import { authConfig } from '../../Functions/auth';
 
 function Front({show}) {
 
@@ -17,14 +18,14 @@ function Front({show}) {
     // READ IDEAS
     useEffect(() => {
         axios
-        .get("http://localhost:3003/ideas")
+        .get("http://localhost:3003/ideas", authConfig())
         .then((res) => setIdeas(res.data));
     }, [lastUpdate]);
 
     // READ DONATORS
     useEffect(() => {
         axios
-        .get("http://localhost:3003/donators")
+        .get("http://localhost:3003/donators", authConfig())
         .then((res) => setDonations(res.data));
     }, [lastUpdate]);
 
@@ -32,7 +33,7 @@ function Front({show}) {
     useEffect(() => {
         if (null === createIdea) return;
         axios
-          .post("http://localhost:3003/ideas", createIdea)
+          .post("http://localhost:3003/ideas", createIdea, authConfig())
           .then((res) => {
             // showMessage(res.data.msg);
             setLastUpdate(Date.now()); // irasymas, update;
@@ -46,7 +47,7 @@ function Front({show}) {
     useEffect(() => {
         if (null === createDonation) return;
         axios
-          .post("http://localhost:3003/donators", createDonation)
+          .post("http://localhost:3003/donators", createDonation, authConfig())
           .then((res) => {
             // showMessage(res.data.msg);
             setLastUpdate(Date.now()); // irasymas, update;
