@@ -15,7 +15,7 @@ function List() {
             <div className="card-body">
                 <ul className="list-group">
                     {
-                    ideas ? ideas.map(idea => idea.verify === 1 ? <Idea key={idea.id} idea={idea}></Idea> : null) : null
+                        ideas ? ideas.map(idea => idea.verify === 1 ? <Idea key={idea.id} idea={idea}></Idea> : null) : null
                     }
                 </ul>
             </div>
@@ -24,3 +24,10 @@ function List() {
 }
 
 export default List;
+
+
+
+
+// {
+//     ideas ? ideas.map((idea => (idea.verify === 1) ? (<Idea key={idea.id} idea={idea}></Idea>) : null).sort((a, b) => b.sum - a.sum)) : null
+//     }

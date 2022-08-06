@@ -16,7 +16,9 @@ function Idea({idea}) {
         setDonation('0');
   };
 
-  let surinktaSuma = donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2);
+  let surinktaSuma;
+
+  surinktaSuma = donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0).toFixed(2);
 
     return (
         <li className="list-group-item">
