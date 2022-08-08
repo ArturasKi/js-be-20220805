@@ -29,12 +29,11 @@ function Idea({idea}) {
                         idea.photo ? <div className="photo-bin"><img src={idea.photo} alt='nice'/></div> : null
                     }
                     <p>Norima surinkti suma: <b>{idea.sum.toFixed(2)} EUR</b></p>
-                    <p>Jau surinkta suma: <b>{
-                    donations && ideas ? surinktaSuma : null
-                    } EUR</b>
-                    <p style={idea.sum <= surinktaSuma ? {display: 'block', color: 'green', fontWeight: 'bold'} : {display: 'none'}}>Suma surinkta!</p>
-                    </p>
-                    <p style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}}>Likusi iki tikslo suma: <b>{donations && ideas ? (idea.sum - donations.filter(d => (d.idea_id === idea.id)).reduce((total, item) => total + +item.donation, 0)).toFixed(2) : null} EUR</b></p>
+                    <div>Jau surinkta suma:  
+                        <b> {donations && ideas ? surinktaSuma : null} EUR</b>
+                        <p style={idea.sum <= surinktaSuma ? {display: 'block', color: 'green', fontWeight: 'bold'} : {display: 'none'}}>Suma surinkta!</p>
+                    </div>
+                    <p style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}}>Likusi iki tikslo suma: <b>{donations && ideas ? (idea.sum - surinktaSuma) : null} EUR</b></p>
                     <div style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}}>
                         <label>Aukotojo vardas</label>
                         <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)}></input>
