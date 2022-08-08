@@ -30,7 +30,7 @@ function Idea({idea}) {
                     }
                     <p>Norima surinkti suma: <b>{idea.sum.toFixed(2)} EUR</b></p>
                     <div>Jau surinkta suma:  
-                        <b> {donations && ideas ? surinktaSuma : null} EUR</b>
+                        <b>{donations && ideas ? surinktaSuma : null} EUR</b>
                         <p style={idea.sum <= surinktaSuma ? {display: 'block', color: 'green', fontWeight: 'bold'} : {display: 'none'}}>Suma surinkta!</p>
                     </div>
                     <p style={idea.sum <= surinktaSuma ? {display: 'none'} : {display: 'block'}}>Likusi iki tikslo suma: <b>{donations && ideas ? (idea.sum - surinktaSuma) : null} EUR</b></p>

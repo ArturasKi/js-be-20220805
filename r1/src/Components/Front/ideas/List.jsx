@@ -7,6 +7,10 @@ function List() {
 
     const {ideas} = useContext(FrontContext);
 
+    // function order(a, b) {
+    //     return a < b ? -1 : (a > b ? 1 : 0);
+    // }
+
     return (
         <div className="card mt-4">
             <div className="card-header">
